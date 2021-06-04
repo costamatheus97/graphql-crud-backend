@@ -1,9 +1,11 @@
 import { Router } from "express";
 
-import health from "./health";
+import categories from "./categories";
+import specifications from "./specifications";
 
 const router = Router();
 
-router.use("/health", health);
+router.use("/categories", categories);
+router.use("/specifications", specifications);
 
 export default router;
