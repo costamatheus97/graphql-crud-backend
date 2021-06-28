@@ -7,8 +7,10 @@ interface ICarsRepository {
     brand?: string,
     name?: string
   ): Promise<Car[]>;
+  findById(id: string): Promise<Car>;
   create(data: ICreateCarDTO): Promise<Car>;
   findByLicensePlate(license_plate: string): Promise<Car>;
+  updateAvailability(id: string, available: boolean): Promise<void>;
 }
 
 export { ICarsRepository };
