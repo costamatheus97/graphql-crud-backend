@@ -3,6 +3,7 @@ interface IDateProvider {
   compareInDays(start_date: Date, end_date: Date): number;
   convertToUTC(date: Date): string;
   dateNow(): Date;
+  calculateDateByPriority(priority: string): Date;
 }
 
 export { IDateProvider };

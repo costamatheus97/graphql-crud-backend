@@ -10,6 +10,11 @@ class DayjsDateProvider implements IDateProvider {
     return dayjs().toDate();
   }
 
+  calculateDateByPriority(priority: string): Date {
+    console.log(priority);
+    return dayjs().toDate();
+  }
+
   convertToUTC(date: Date): string {
     return dayjs(date).utc().local().format();
   }
