@@ -1,19 +1,17 @@
 import { Router } from "express";
 
-import authenticate from "./authenticate";
-import cars from "./cars";
-import categories from "./categories";
-import rentals from "./rentals";
-import specifications from "./specifications";
-import users from "./users";
+import authenticateClinic from "./authenticateClinic";
+import authenticateRadiologist from "./authenticateRadiologist";
+import exams from "./exams";
+import radiologists from "./radiologists";
+import veterinarians from "./veterinarians";
 
 const router = Router();
 
-router.use("/cars", cars);
-router.use("/categories", categories);
-router.use("/rentals", rentals);
-router.use("/specifications", specifications);
-router.use("/users", users);
-router.use(authenticate);
+router.use("/exams", exams);
+router.use("/veterinarians", veterinarians);
+router.use("/radiologists", radiologists);
+router.use(authenticateRadiologist);
+router.use(authenticateClinic);
 
 export default router;

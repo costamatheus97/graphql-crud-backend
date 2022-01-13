@@ -4,12 +4,21 @@ import { ICreateVeterinarianDTO } from "@modules/accounts/dtos/ICreateVeterinari
 import { Veterinarian } from "@modules/accounts/infra/typeorm/entities/Veterinarians";
 import { IVeterinariansRepository } from "@modules/accounts/repositories/IVeterinariansRepository";
 
-class UsersRepository implements IVeterinariansRepository {
+class VeterinariansRepository implements IVeterinariansRepository {
   private repository: Repository<Veterinarian>;
 
   constructor() {
     this.repository = getRepository(Veterinarian);
   }
+
+  async findByClinic(clinic_id?: string): Promise<Veterinarian[]> {
+    const veterinarians = await this.repository.find({
+      where: { clinic_id },
+    });
+
+    return veterinarians;
+  }
+
   async create({
     name,
     crmv,
@@ -43,4 +52,4 @@ class UsersRepository implements IVeterinariansRepository {
   }
 }
 
-export { UsersRepository };
+export { VeterinariansRepository };

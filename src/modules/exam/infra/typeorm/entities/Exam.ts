@@ -39,13 +39,13 @@ export class Exam {
   projection: string;
 
   @Column()
-  history: string;
+  historic: string;
 
   @Column()
   clinic_suspect: string;
 
-  @Column()
-  x_ray: string;
+  @Column({ array: true })
+  x_ray: string[];
 
   @Column()
   priority: string;

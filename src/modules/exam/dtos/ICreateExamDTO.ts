@@ -6,9 +6,9 @@ interface ICreateExamDTO {
   age: number;
   exam_region: string;
   projection: string;
-  history: string;
+  historic: string;
   clinic_suspect: string;
-  x_ray: string;
+  x_ray: string[];
   priority: string;
   report_status?: string;
   payment_status?: string;

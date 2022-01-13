@@ -4,7 +4,7 @@ import { ICreateClinicDTO } from "@modules/accounts/dtos/ICreateClinicDTO";
 import { Clinic } from "@modules/accounts/infra/typeorm/entities/Clinic";
 import { IClinicsRepository } from "@modules/accounts/repositories/IClinicsRepository";
 
-class UsersRepository implements IClinicsRepository {
+class ClinicsRepository implements IClinicsRepository {
   private repository: Repository<Clinic>;
 
   constructor() {
@@ -52,4 +52,4 @@ class UsersRepository implements IClinicsRepository {
   }
 }
 
-export { UsersRepository };
+export { ClinicsRepository };

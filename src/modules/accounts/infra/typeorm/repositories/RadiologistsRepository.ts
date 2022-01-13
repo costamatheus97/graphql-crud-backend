@@ -4,7 +4,7 @@ import { ICreateRadiologistDTO } from "@modules/accounts/dtos/ICreateRadiologist
 import { Radiologist } from "@modules/accounts/infra/typeorm/entities/Radiologist";
 import { IRadiologistsRepository } from "@modules/accounts/repositories/IRadiologistsRepository";
 
-class UsersRepository implements IRadiologistsRepository {
+class RadiologistsRepository implements IRadiologistsRepository {
   private repository: Repository<Radiologist>;
 
   constructor() {
@@ -49,4 +49,4 @@ class UsersRepository implements IRadiologistsRepository {
   }
 }
 
-export { UsersRepository };
+export { RadiologistsRepository };
