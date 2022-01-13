@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
 
-import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/UsersRepository";
+import { ClinicsRepository } from "@modules/accounts/infra/typeorm/repositories/ClinicsRepository";
+import { RadiologistsRepository } from "@modules/accounts/infra/typeorm/repositories/RadiologistsRepository";
 import { AppError } from "@shared/errors/AppError";
 
 interface IPayload {
@@ -27,15 +28,19 @@ export async function ensureAuthenticated(
       "95df1a5b8e82f63a91756748da96e028"
     ) as IPayload;
 
-    const usersRepository = new UsersRepository();
-    const user = usersRepository.findById(user_id);
+    const clinicsRepository = new ClinicsRepository();
+    const radiologistsRepository = new RadiologistsRepository();
 
-    if (!user) {
+    const radiologist = clinicsRepository.findById(user_id);
+    const clinic = radiologistsRepository.findById(user_id);
+
+    if (!radiologist && !clinic) {
       throw new AppError("User does not exist");
     }
 
     req.user = {
       id: user_id,
+      role: radiologist ? "radiologist" : "clinic",
     };
 
     next();

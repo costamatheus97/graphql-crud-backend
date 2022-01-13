@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/UsersRepository";
+import { RadiologistsRepository } from "@modules/accounts/infra/typeorm/repositories/RadiologistsRepository";
 import { AppError } from "@shared/errors/AppError";
 
 export async function ensureIsAdmin(
@@ -9,11 +9,11 @@ export async function ensureIsAdmin(
   next: NextFunction
 ) {
   const { id } = req.user;
-  const usersRepository = new UsersRepository();
+  const radiologistsRepository = new RadiologistsRepository();
 
-  const user = await usersRepository.findById(id);
+  const radiologist = await radiologistsRepository.findById(id);
 
-  if (!user.isAdmin) {
+  if (!radiologist) {
     throw new AppError("User is not admin");
   }
 

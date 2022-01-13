@@ -12,9 +12,9 @@ interface IRequest {
   age: number;
   exam_region: string;
   projection: string;
-  history: string;
+  historic: string;
   clinic_suspect: string;
-  x_ray: string;
+  x_ray: string[];
   priority: string;
   clinic_id: string;
   veterinarian_id: string;
@@ -38,7 +38,7 @@ class CreateExamUseCase {
     age,
     exam_region,
     projection,
-    history,
+    historic,
     clinic_suspect,
     x_ray,
     priority,
@@ -56,7 +56,7 @@ class CreateExamUseCase {
       age,
       exam_region,
       projection,
-      history,
+      historic,
       clinic_suspect,
       x_ray,
       priority,

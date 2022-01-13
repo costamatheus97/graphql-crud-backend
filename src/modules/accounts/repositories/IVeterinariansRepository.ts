@@ -5,6 +5,7 @@ interface IVeterinariansRepository {
   create(data: ICreateVeterinarianDTO): Promise<void>;
   findByEmail(email: string): Promise<Veterinarian>;
   findById(id: string): Promise<Veterinarian>;
+  findByClinic(clinic_id: string): Promise<Veterinarian[]>;
 }
 
 export { IVeterinariansRepository };

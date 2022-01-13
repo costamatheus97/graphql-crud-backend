@@ -2,14 +2,28 @@ import { container } from "tsyringe";
 
 import "@shared/container/providers";
 
-import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/UsersRepository";
-import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
-import { CarsRepository } from "@modules/cars/infra/typeorm/repositories/CarsRepository";
-import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
+import { ClinicsRepository } from "@modules/accounts/infra/typeorm/repositories/ClinicsRepository";
+import { RadiologistsRepository } from "@modules/accounts/infra/typeorm/repositories/RadiologistsRepository";
+import { VeterinariansRepository } from "@modules/accounts/infra/typeorm/repositories/VeterinariansRepository";
+import { IClinicsRepository } from "@modules/accounts/repositories/IClinicsRepository";
+import { IRadiologistsRepository } from "@modules/accounts/repositories/IRadiologistsRepository";
+import { IVeterinariansRepository } from "@modules/accounts/repositories/IVeterinariansRepository";
+import { ExamsRepository } from "@modules/exam/infra/typeorm/repositories/ExamsRepository";
+import { IExamsRepository } from "@modules/exam/repositories/IExamsRepository";
 
-container.registerSingleton<ICarsRepository>("CarsRepository", CarsRepository);
-
-container.registerSingleton<IUsersRepository>(
-  "UsersRepository",
-  UsersRepository
+container.registerSingleton<IClinicsRepository>(
+  "ClinicsRepository",
+  ClinicsRepository
+);
+container.registerSingleton<IExamsRepository>(
+  "ExamsRepository",
+  ExamsRepository
+);
+container.registerSingleton<IRadiologistsRepository>(
+  "RadiologistsRepository",
+  RadiologistsRepository
+);
+container.registerSingleton<IVeterinariansRepository>(
+  "VeterinariansRepository",
+  VeterinariansRepository
 );
