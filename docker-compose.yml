@@ -2,34 +2,27 @@ version: "3.9"
 
 services:
   database:
-    image: postgres
-    container_name: database_laudei
+    image: mongo
+    container_name: questionnaire_database
     restart: always
     ports: 
-      - 5432:5432
+      - 27017:27017
     environment:
-      - POSTGRES_USER=laudei
-      - POSTGRES_PASSWORD=Chikinitos@2021!
-      - POSTGRES_DB=laudei
+      - MONGO_INITDB_ROOT_USERNAME=questionnaireadmin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
     volumes:
-      - pgdata:/data/postgres
-
+      - db:/data/db
 
   app:
     build: .
-    container_name: laudei
+    container_name: questionnaires
     restart: always
     ports: 
       - 3333:3333
     volumes: 
       - .:/usr/app
-    links: 
-      - database
     depends_on:
       - database
 
-
-
 volumes:
-  pgdata:
-    driver: local
+  db:

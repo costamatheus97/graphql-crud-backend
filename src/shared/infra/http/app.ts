@@ -1,23 +1,20 @@
+import cors from "cors";
 import express, { Request, Response, NextFunction } from "express";
 import "reflect-metadata";
 import "express-async-errors";
-import swaggerUi from "swagger-ui-express";
 
 import "@shared/container";
 
 import { AppError } from "@shared/errors/AppError";
 import routes from "@shared/infra/http/routes";
-import createConnection from "@shared/infra/typeorm";
+import { connect } from "@shared/infra/mongoose";
 
-import swaggerFile from "../../../swagger.json";
-
-createConnection();
+connect();
 
 const app = express();
 
 app.use(express.json());
-
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use(cors());
 
 app.use("/api", routes);
 
