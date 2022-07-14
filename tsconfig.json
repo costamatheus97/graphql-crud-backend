@@ -10,9 +10,6 @@
       ],
       "@shared/*": [
         "shared/*"
-      ],
-      "@utils/*": [
-        "utils/*"
       ]
     },
     "esModuleInterop": true,
