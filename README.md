@@ -5,7 +5,7 @@
 
 ## General info
 
-This boilerplate was created to speed up my API building process, adding some things such as folder structures, routes, setting up the server and linters.
+Simple GraphQL CRUD with Clean Architecture using a Bookstore example
 
 ## How to use it
 
@@ -20,6 +20,12 @@ And start the development server with:
 ```
 $ yarn dev
 ``` 
+
+Or just run the following command to run the container
+
+```
+$ docker-compose up
+```
 
 Linter:
 
@@ -38,3 +44,6 @@ $ yarn build
 * Nodejs
 * Typescript
 * Express
+* GraphQL
+* MongoDB
+* Docker
