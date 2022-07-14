@@ -1,21 +1,24 @@
 import "reflect-metadata";
 import { BooksRepositoryInMemory } from "@modules/books/repositories/in-memory/BooksRepositoryInMemory";
 
-import { CreateBookUseCase } from "./CreateBookUseCase";
+import { CreateBookUseCase } from "../createBook/CreateBookUseCase";
+import { ListBookByIdUseCase } from "./ListBookByIdUseCase";
 
 let createBookUseCase: CreateBookUseCase;
+let listBooksByIdUseCase: ListBookByIdUseCase;
 
 let bookRepositoryInMemory: BooksRepositoryInMemory;
 
-describe("Create Book", () => {
+describe("List Books", () => {
   beforeEach(() => {
     bookRepositoryInMemory = new BooksRepositoryInMemory();
 
     createBookUseCase = new CreateBookUseCase(bookRepositoryInMemory);
+    listBooksByIdUseCase = new ListBookByIdUseCase(bookRepositoryInMemory);
   });
 
-  it("should be able to create a new book", async () => {
-    const book = await createBookUseCase.execute({
+  it("should be able to list books by id", async () => {
+    const { _id } = await createBookUseCase.execute({
       title: "Harry Potter",
       author: "JK Rowling",
       description: "Fantastic book",
@@ -23,11 +26,8 @@ describe("Create Book", () => {
       cover: "https://images-na.ssl-images-amazon.com/images/I/81iqZ2HHD-L.jpg",
     });
 
-    expect(book).toHaveProperty("_id");
+    const book = await listBooksByIdUseCase.execute(_id);
+
     expect(book).toHaveProperty("title");
-    expect(book).toHaveProperty("author");
-    expect(book).toHaveProperty("price");
-    expect(book).toHaveProperty("cover");
-    expect(book).toHaveProperty("description");
   });
 });
