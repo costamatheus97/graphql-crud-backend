@@ -1,4 +1,5 @@
 import { ICreateBookDTO } from "@modules/books/dtos/ICreateBookDTO";
+import { IUpdateBookDTO } from "@modules/books/dtos/IUpdateBookDTO";
 import { IBook } from "@modules/books/infra/mongoose/entities/Book";
 import { createBookController } from "@modules/books/useCases/createBook/CreateBookController";
 import { deleteBookController } from "@modules/books/useCases/deleteBook/DeleteBookController";
@@ -8,19 +9,23 @@ import { updateBookController } from "@modules/books/useCases/updateBooks/Update
 
 export default {
   Query: {
-    async listBooks(): Promise<IBook[]> {
+    async getBooks(): Promise<IBook[]> {
       const { data } = await listBooksController.handle();
 
       return data;
     },
-    async listBookById({ id }): Promise<IBook> {
+    async getBookById(_, { id }: { id: string }): Promise<IBook> {
       const { data } = await listBookByIdController.handle(id);
 
       return data;
     },
+  },
+  Mutation: {
     async createBook(
       _,
-      { author, cover, description, price, title }: ICreateBookDTO
+      {
+        payload: { author, cover, description, price, title },
+      }: { payload: ICreateBookDTO }
     ): Promise<IBook> {
       const { data } = await createBookController.handle({
         author,
@@ -32,14 +37,14 @@ export default {
 
       return data;
     },
-    async updateBook({
-      author,
-      cover,
-      description,
-      price,
-      title,
-    }: ICreateBookDTO): Promise<IBook> {
-      const { data } = await createBookController.handle({
+    async updateBook(
+      _,
+      {
+        payload: { id, author, cover, description, price, title },
+      }: { payload: IUpdateBookDTO }
+    ): Promise<IBook> {
+      const { data } = await updateBookController.handle({
+        id,
         author,
         cover,
         description,
@@ -48,6 +53,11 @@ export default {
       });
 
       return data;
+    },
+    async deleteBook(_, { id }: { id: string }): Promise<string> {
+      await deleteBookController.handle(id);
+
+      return id;
     },
   },
 };

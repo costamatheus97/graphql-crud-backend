@@ -1,4 +1,3 @@
-import { Request } from "express";
 import { container } from "tsyringe";
 
 import { IHttpResponse } from "@modules/books/interfaces/HttpResponse";
@@ -6,9 +5,7 @@ import { IHttpResponse } from "@modules/books/interfaces/HttpResponse";
 import { DeleteBookUseCase } from "./DeleteBookUseCase";
 
 class DeleteBookController {
-  async handle(req: Request): Promise<IHttpResponse> {
-    const { id } = req.params;
-
+  async handle(id: string): Promise<IHttpResponse> {
     const deleteBookUseCase = container.resolve(DeleteBookUseCase);
 
     await deleteBookUseCase.execute(id);

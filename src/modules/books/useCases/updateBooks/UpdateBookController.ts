@@ -1,16 +1,16 @@
-import { Request } from "express";
 import { container } from "tsyringe";
 
+import { IUpdateBookDTO } from "@modules/books/dtos/IUpdateBookDTO";
 import { IBook } from "@modules/books/infra/mongoose/entities/Book";
 import { IHttpResponse } from "@modules/books/interfaces/HttpResponse";
 
 import { UpdateBookUseCase } from "./UpdateBookUseCase";
 
 class UpdateBookController {
-  async handle(req: Request): Promise<IHttpResponse<IBook>> {
-    const payload = req.body;
-    const { id } = req.params;
-
+  async handle({
+    id,
+    ...payload
+  }: IUpdateBookDTO): Promise<IHttpResponse<IBook>> {
     const updateBookUseCase = container.resolve(UpdateBookUseCase);
 
     const updatedBook = await updateBookUseCase.execute(id, payload);

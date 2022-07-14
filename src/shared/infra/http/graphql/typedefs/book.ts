@@ -7,17 +7,34 @@ export default gql`
   }
 
   type Mutation {
-    createBook(payload: Book): Book
-    deleteBook(id: ID!): Book
-    updateBook(id: ID!): Book
+    createBook(payload: BookInput!): Book
+    deleteBook(id: ID!): ID!
+    updateBook(payload: UpdateBookInput!): Book
   }
 
-  type Book {
-    id: ID!
+  input BookInput {
     title: String!
     author: String!
     description: String!
-    price: Number!
+    price: Int!
     cover: String!
+  }
+
+  input UpdateBookInput {
+    id: ID!
+    title: String
+    author: String
+    description: String
+    price: Int
+    cover: String
+  }
+
+  type Book {
+    id: ID
+    title: String
+    author: String
+    description: String
+    price: Int
+    cover: String
   }
 `;

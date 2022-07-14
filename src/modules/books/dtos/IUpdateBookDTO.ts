@@ -1,4 +1,5 @@
 interface IUpdateBookDTO {
+  id?: string;
   title?: string;
   author?: string;
   description?: string;
