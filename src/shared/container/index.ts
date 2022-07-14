@@ -1,9 +1,9 @@
 import { container } from "tsyringe";
 
-import { QuestionnaireRepository } from "@modules/questionnaires/infra/mongoose/repositories/QuestionnaireRepository";
-import { IQuestionnaireRepository } from "@modules/questionnaires/repositories/IQuestionaireRepository";
+import { BookRepository } from "@modules/books/infra/mongoose/repositories/BooksRepository";
+import { IBooksRepository } from "@modules/books/repositories/IBooksRepository";
 
-container.registerSingleton<IQuestionnaireRepository>(
-  "QuestionnaireRepository",
-  QuestionnaireRepository
+container.registerSingleton<IBooksRepository>(
+  "BooksRepository",
+  BookRepository
 );

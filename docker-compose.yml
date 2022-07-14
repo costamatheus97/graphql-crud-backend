@@ -3,19 +3,19 @@ version: "3.9"
 services:
   database:
     image: mongo
-    container_name: questionnaire_database
+    container_name: bookstore_database
     restart: always
     ports: 
       - 27017:27017
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=questionnaireadmin
+      - MONGO_INITDB_ROOT_USERNAME=bookstoreadmin
       - MONGO_INITDB_ROOT_PASSWORD=admin
     volumes:
       - db:/data/db
 
   app:
     build: .
-    container_name: questionnaires
+    container_name: bookstore
     restart: always
     ports: 
       - 3333:3333

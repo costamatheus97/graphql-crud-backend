@@ -1,3 +1,4 @@
+import { ApolloServer } from "apollo-server-express";
 import cors from "cors";
 import express, { Request, Response, NextFunction } from "express";
 import "reflect-metadata";
@@ -6,8 +7,10 @@ import "express-async-errors";
 import "@shared/container";
 
 import { AppError } from "@shared/errors/AppError";
-import routes from "@shared/infra/http/routes";
 import { connect } from "@shared/infra/mongoose";
+
+import resolvers from "./graphql/resolvers";
+import typeDefs from "./graphql/typedefs";
 
 connect();
 
@@ -16,7 +19,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("/api", routes);
+const server = new ApolloServer({
+  resolvers,
+  typeDefs,
+});
+
+server.applyMiddleware({ app });
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof AppError) {
