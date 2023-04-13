@@ -13,6 +13,7 @@ import typeDefs from "./graphql/typedefs";
 
 connect();
 
+const PORT = process.env.PORT || 4000;
 const app = express();
 
 app.use(express.json());
@@ -27,6 +28,12 @@ const startServer = async () => {
   await server.start();
 
   server.applyMiddleware({ app });
+
+  app.listen(PORT, () => {
+    console.log(
+      `Server is running at http://localhost:${PORT}${server.graphqlPath}`
+    );
+  });
 };
 
 startServer();
