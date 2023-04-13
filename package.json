@@ -21,6 +21,7 @@
     "dotenv": "^16.0.1",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "graphql": "^16.5.0",
     "module-alias": "^2.2.2",
@@ -44,7 +45,7 @@
     "typescript": "^4.3.2"
   },
   "scripts": {
-    "start": "node dist/src/shared/infra/http/app.js",
+    "start": "node -r esm -r module-alias/register dist/src/shared/infra/http/app.js",
     "dev": "cross-env NODE_ENV=development tsnd -r tsconfig-paths/register --poll --inspect --ignore-watch node_modules --transpile-only --respawn src/shared/infra/http/server.ts",
     "build": "tsc",
     "lint": "eslint --fix src",
