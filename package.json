@@ -1,7 +1,7 @@
 {
   "name": "graphql-crud",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/shared/infra/http/app.js",
   "license": "MIT",
   "dependencies": {
     "@graphql-tools/load-files": "^6.6.0",
