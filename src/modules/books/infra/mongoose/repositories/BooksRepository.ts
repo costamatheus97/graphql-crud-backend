@@ -1,11 +1,11 @@
 import { ICreateBookDTO } from "@modules/books/dtos/ICreateBookDTO";
 import { IUpdateBookDTO } from "@modules/books/dtos/IUpdateBookDTO";
 import { IBook } from "@modules/books/infra/mongoose/entities/Book";
-import { IBookRepository } from "@modules/books/repositories/IBooksRepository";
+import { IBooksRepository } from "@modules/books/repositories/IBooksRepository";
 
 import Book from "../models/Book";
 
-class BookRepository implements IBookRepository {
+class BookRepository implements IBooksRepository {
   async deleteBookById(id: string): Promise<void> {
     await Book.deleteOne({ _id: id });
   }
