@@ -1,4 +1,8 @@
 {
+  "_moduleAliases": {
+    "@modules": "dist/src/modules",
+    "@shared": "dist/src/shared"
+  },
   "name": "graphql-crud",
   "version": "1.0.0",
   "main": "app.js",
@@ -19,6 +23,7 @@
     "eslint-plugin-import": "^2.22.1",
     "express": "^4.17.1",
     "graphql": "^16.5.0",
+    "module-alias": "^2.2.2",
     "mongoose": "^6.3.5",
     "reflect-metadata": "^0.1.13",
     "ts-jest": "^27.0.3",
