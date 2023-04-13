@@ -40,7 +40,7 @@
     "typescript": "^4.3.2"
   },
   "scripts": {
-    "start": "node dist/src/shared/infra/http/app/index.js",
+    "start": "node dist/src/shared/infra/http/app.js",
     "dev": "cross-env NODE_ENV=development tsnd -r tsconfig-paths/register --poll --inspect --ignore-watch node_modules --transpile-only --respawn src/shared/infra/http/server.ts",
     "build": "tsc",
     "lint": "eslint --fix src",
